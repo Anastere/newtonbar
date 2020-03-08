@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Menu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
+    <script src="https://kit.fontawesome.com/5eae05862f.js" crossorigin="anonymous"></script>
+    <!--            <script th:src="@{/js/shoppingCart.js}"></script>-->
+    <script>
+        function minus(id) {
+            var value = document.getElementById("quantity" + id).value;
+            if (value >= 1) {
+                document.getElementById("quantity" + id).value = value - 1;
+            }
+        }
+
+        function plus(id) {
+            var value = document.getElementById("quantity" + id).value;
+            document.getElementById("myId" + id).value = id;
+            if (value < 100) {
+                document.getElementById("quantity" + id).value = parseInt(value) + 1;
+            }
+        }
+    </script>
+</head>
+<body>
+<h1 align="center">MENU</h1>
+
+<div class="row food-menu-list">
+    <div th:if="${#lists.isEmpty(cocktails)}">
+        <span>No cocktails in menu</span>
+    </div>
+    <div th:unless="${#lists.isEmpty(cocktails)}">
+        <div th:each="cocktail : ${cocktails}">
+            <span th:text="${cocktail.name}" class="food-menu-details single-menu"></span>
+            <span class="menu-price" th:text="${cocktail.price}"> Price </span>
+            <br>
+            <span th:unless="${#maps.isEmpty(cocktail.recipe)}">
+                <span th:each="ingridient : ${cocktail.recipe}">
+                    <i th:utext="${ingridient.key}" class="ingredients"></i>
+                    <i>,</i>
+                </span>
+            </span>
+
+            <span class="quantity">
+                <form th:action="@{'/addToShoppingCart'}" th:object="${shoppingCartItem}" method="post">
+                    <button class="minus-btn" type="button" name="button" th:onclick="'minus(\'' + ${cocktail.id} + '\');'">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <input type="hidden" th:id="myId+${cocktail.id}" th:field="*{cocktailId}"/>
+                    <input th:id="quantity+${cocktail.id}" type="text" th:field="*{quantity}" value="0">
+                    <button class="plus-btn" type="button" name="button" th:onclick="'plus(\'' + ${cocktail.id} + '\');'">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button type="submit"><i class="icon-shopping-cart"></i></button>
+                </form>
+            </span>
+        </div>
+    </div>
+    <p>Go to shopping cart page <a href="/shoppingCart">here</a></p>
+
+</div>
+
+<!--<table>-->
+<!--    <tbody>-->
+<!--    <tr th:if="${#lists.isEmpty(cocktails)}">-->
+<!--        <td colspan="2"> No cocktails in menu</td>-->
+<!--    </tr>-->
+<!--    <tr th:each="cocktail : ${cocktails}">-->
+<!--        <td><span th:text="${cocktail.name}"> Name </span></td>-->
+<!--        <td th:if="${#maps.isEmpty(cocktail.recipe)}">-->
+<!--            <td th:each="ingridient : ${cocktail.recipe}">-->
+<!--                <span th:text="${ingridient.key}"> </span>-->
+<!--            </td>-->
+<!--        </td>-->
+<!--        <td><span th:text="${cocktail.price}"> Price </span></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+</body>
+
+</html>
+
+

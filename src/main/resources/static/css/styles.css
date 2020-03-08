@@ -1,0 +1,68 @@
+.food-menu-list .single-menu{
+    margin-bottom: 0;
+}
+.food-menu-list{
+    font-size: 20px;
+}
+.col{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.menu-price{
+    color: #d0963e;
+}
+.food-menu-details{
+    text-align: inherit;
+    padding: 20px 20px 0;
+    font-size: 20px;
+}
+.ingredients{
+    padding-left: 15px;
+    font-size: 10px;
+}
+.quantity {
+    padding-top: 20px;
+    margin-right: 60px;
+}
+.quantity input {
+    -webkit-appearance: none;
+    border: none;
+    text-align: center;
+    width: 25px;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+}
+.minus-btn {
+    margin-bottom: 3px;
+}
+.plus-btn {
+    margin-top: 2px;
+}
+*{
+    box-sizing: border-box;
+}
+h3 span .food-menu-details{
+    float: right;
+}
+h3 .food-menu-details{
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+div{
+    display: block;
+    color: black;
+}
+h6{
+    font-size: 40px;
+}
+body{
+    color: #555555;
+    font-family: 'MMC', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 1.7em;
+    background-color: #fff;
+}
